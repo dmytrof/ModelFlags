@@ -1,0 +1,33 @@
+{
+    "name": "dmytrof/model-flags",
+    "type": "library",
+    "description": "Adds flags support to your model/entity",
+    "keywords": ["flag", "entity flags", "model flags"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Dmytro Feshchenko",
+            "email": "dmytro.feshchenko@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^7.4 || ^8.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8.3 || ^9.1",
+        "roave/security-advisories": "dev-latest"
+    },
+    "autoload": {
+        "psr-4": {
+            "Dmytrof\\ModelFlags\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Dmytrof\\ModelFlags\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "tests": "phpunit"
+    }
+}
