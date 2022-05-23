@@ -12,6 +12,7 @@
 namespace Dmytrof\ModelFlags\Tests\Model\Traits;
 
 use Dmytrof\ModelFlags\Exception\InvalidFlagException;
+use Dmytrof\ModelFlags\Model\ModelWithFlagsInterface;
 use Dmytrof\ModelFlags\Model\Traits\ModelWithFlagsTrait;
 use PHPUnit\Framework\TestCase;
 
@@ -19,7 +20,7 @@ class ModelWithFlagsTraitTest extends TestCase
 {
     public function testSupportedFlagsTypes(): void
     {
-        $modelWithFlags = new class {
+        $modelWithFlags = new class implements ModelWithFlagsInterface {
             use ModelWithFlagsTrait;
 
             public const SOME_FLAG1 = 1;
@@ -74,7 +75,7 @@ class ModelWithFlagsTraitTest extends TestCase
 
     public function testArrayFlagsTypes(): void
     {
-        $modelWithFlags = new class {
+        $modelWithFlags = new class implements ModelWithFlagsInterface {
             use ModelWithFlagsTrait;
 
             public const UNSUPPORTED_FLAG = ['ARRAY_FLAG'];
@@ -87,7 +88,7 @@ class ModelWithFlagsTraitTest extends TestCase
 
     public function testBooleanFlagTypes(): void
     {
-        $modelWithFlags = new class {
+        $modelWithFlags = new class implements ModelWithFlagsInterface {
             use ModelWithFlagsTrait;
         };
 
@@ -97,7 +98,7 @@ class ModelWithFlagsTraitTest extends TestCase
 
     public function testBooleanFalseFlagTypes(): void
     {
-        $modelWithFlags = new class {
+        $modelWithFlags = new class implements ModelWithFlagsInterface {
             use ModelWithFlagsTrait;
         };
 
@@ -107,7 +108,7 @@ class ModelWithFlagsTraitTest extends TestCase
 
     public function testNullFlagTypes(): void
     {
-        $modelWithFlags = new class {
+        $modelWithFlags = new class implements ModelWithFlagsInterface {
             use ModelWithFlagsTrait;
         };
 
@@ -117,7 +118,7 @@ class ModelWithFlagsTraitTest extends TestCase
 
     public function testObjectFlagTypes(): void
     {
-        $modelWithFlags = new class {
+        $modelWithFlags = new class implements ModelWithFlagsInterface {
             use ModelWithFlagsTrait;
         };
 
@@ -127,7 +128,7 @@ class ModelWithFlagsTraitTest extends TestCase
 
     public function testFloatFlagTypes(): void
     {
-        $modelWithFlags = new class {
+        $modelWithFlags = new class implements ModelWithFlagsInterface {
             use ModelWithFlagsTrait;
         };
 
