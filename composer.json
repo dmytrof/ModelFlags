@@ -4,6 +4,8 @@
     "description": "Adds flags support to your model/entity",
     "keywords": ["flag", "entity flags", "model flags"],
     "license": "MIT",
+    "version": "v1.1",
+    "time": "2023-12-29",
     "authors": [
         {
             "name": "Dmytro Feshchenko",
