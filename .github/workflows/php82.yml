@@ -1,4 +1,4 @@
-name: PHP8.1
+name: PHP8.2
 
 on: [push]
 
