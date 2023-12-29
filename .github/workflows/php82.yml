@@ -28,4 +28,4 @@ jobs:
     # Docs: https://getcomposer.org/doc/articles/scripts.md
 
     - name: Run tests suite
-      run: composer run-script tests
+      run: make unit-tests

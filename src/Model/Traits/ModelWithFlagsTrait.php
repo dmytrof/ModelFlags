@@ -11,7 +11,6 @@
 
 namespace Dmytrof\ModelFlags\Model\Traits;
 
-use Dmytrof\ModelFlags\Exception\InvalidFlagException;
 use Dmytrof\ModelFlags\Model\ModelWithFlagsInterface;
 
 trait ModelWithFlagsTrait
@@ -22,12 +21,11 @@ trait ModelWithFlagsTrait
      * Sets flag
      * @param int|string $flag
      * @param bool $value
-     * @return ModelWithFlagsInterface
+     * @return $this
      * @see ModelWithFlagsInterface::setFlag()
      */
-    public function setFlag($flag, bool $value = true): ModelWithFlagsInterface
+    public function setFlag(int|string $flag, bool $value = true): static
     {
-        $this->checkFlagType($flag);
         $this->flags[$flag] = $value;
 
         return $this;
@@ -39,10 +37,8 @@ trait ModelWithFlagsTrait
      * @return bool
      * @see ModelWithFlagsInterface::hasFlag()
      */
-    public function hasFlag($flag): bool
+    public function hasFlag(int|string $flag): bool
     {
-        $this->checkFlagType($flag);
-
         return $this->flags[$flag] ?? false;
     }
 
@@ -52,7 +48,7 @@ trait ModelWithFlagsTrait
      * @return bool
      * @see ModelWithFlagsInterface::popFlag()
      */
-    public function popFlag($flag): bool
+    public function popFlag(int|string $flag): bool
     {
         $flagValue = $this->hasFlag($flag);
         $this->unsetFlag($flag);
@@ -63,12 +59,11 @@ trait ModelWithFlagsTrait
     /**
      * Unsets flag
      * @param int|string $flag
-     * @return ModelWithFlagsInterface
+     * @return $this
      * @see ModelWithFlagsInterface::unsetFlag()
      */
-    public function unsetFlag($flag): ModelWithFlagsInterface
+    public function unsetFlag(int|string $flag): static
     {
-        $this->checkFlagType($flag);
         unset($this->flags[$flag]);
 
         return $this;
@@ -77,35 +72,23 @@ trait ModelWithFlagsTrait
     /**
      * Unsets flag
      * @param int|string $flag
-     * @return ModelWithFlagsInterface
+     * @return $this
      * @see ModelWithFlagsInterface::removeFlag()
      */
-    public function removeFlag($flag): ModelWithFlagsInterface
+    public function removeFlag(int|string $flag): static
     {
-        return $this->unsetFlag($flag);
+        $this->unsetFlag($flag);
+
+        return $this;
     }
 
     /**
      * Returns flags
-     * @return array
+     * @return array<int, int|string>
      * @see ModelWithFlagsInterface::getFlags()
      */
     public function getFlags(): array
     {
         return $this->flags;
-    }
-
-    /**
-     * Checks type of flag
-     * @param $flag
-     * @return bool
-     */
-    protected function checkFlagType($flag): bool
-    {
-        if (!is_int($flag) && !is_string($flag)) {
-            throw new InvalidFlagException(sprintf('Unsupported type \'%s\' of flag. Strings and integers are supported only!', gettype($flag)));
-        }
-
-        return true;
     }
 }

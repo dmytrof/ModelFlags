@@ -11,8 +11,6 @@
 
 namespace Dmytrof\ModelFlags\Model;
 
-use Dmytrof\ModelFlags\Model\Traits\ModelWithFlagsTrait;
-
 interface ModelWithFlagsInterface
 {
     /**
@@ -21,39 +19,39 @@ interface ModelWithFlagsInterface
      * @param bool $value
      * @return $this
      */
-    public function setFlag($flag, bool $value = true): self;
+    public function setFlag(int|string $flag, bool $value = true): static;
 
     /**
      * Checks flag
      * @param int|string $flag
      * @return bool
      */
-    public function hasFlag($flag): bool;
+    public function hasFlag(int|string $flag): bool;
 
     /**
      * Pops flag
      * @param int|string $flag
      * @return bool
      */
-    public function popFlag($flag): bool;
+    public function popFlag(int|string $flag): bool;
 
     /**
      * Unsets flag
      * @param int|string $flag
      * @return $this
      */
-    public function unsetFlag($flag): self;
+    public function unsetFlag(int|string $flag): static;
 
     /**
      * Unsets flag
      * @param int|string $flag
      * @return $this
      */
-    public function removeFlag($flag): self;
+    public function removeFlag(int|string $flag): static;
 
     /**
      * Returns flags
-     * @return array
+     * @return array<int, int|string>
      */
     public function getFlags(): array;
 }

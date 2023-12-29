@@ -11,7 +11,6 @@
 
 namespace Dmytrof\ModelFlags\Tests\Model\Traits;
 
-use Dmytrof\ModelFlags\Exception\InvalidFlagException;
 use Dmytrof\ModelFlags\Model\ModelWithFlagsInterface;
 use Dmytrof\ModelFlags\Model\Traits\ModelWithFlagsTrait;
 use PHPUnit\Framework\TestCase;
@@ -71,68 +70,5 @@ class ModelWithFlagsTraitTest extends TestCase
             $modelWithFlags::SOME_FLAG1 => false,
         ], $modelWithFlags->getFlags());
         $this->assertFalse($modelWithFlags->popFlag($modelWithFlags::SOME_FLAG1));
-    }
-
-    public function testArrayFlagsTypes(): void
-    {
-        $modelWithFlags = new class implements ModelWithFlagsInterface {
-            use ModelWithFlagsTrait;
-
-            public const UNSUPPORTED_FLAG = ['ARRAY_FLAG'];
-        };
-
-        $this->expectException(InvalidFlagException::class);
-        $modelWithFlags->setFlag($modelWithFlags::UNSUPPORTED_FLAG);
-
-    }
-
-    public function testBooleanFlagTypes(): void
-    {
-        $modelWithFlags = new class implements ModelWithFlagsInterface {
-            use ModelWithFlagsTrait;
-        };
-
-        $this->expectException(InvalidFlagException::class);
-        $modelWithFlags->hasFlag(true);
-    }
-
-    public function testBooleanFalseFlagTypes(): void
-    {
-        $modelWithFlags = new class implements ModelWithFlagsInterface {
-            use ModelWithFlagsTrait;
-        };
-
-        $this->expectException(InvalidFlagException::class);
-        $modelWithFlags->popFlag(false);
-    }
-
-    public function testNullFlagTypes(): void
-    {
-        $modelWithFlags = new class implements ModelWithFlagsInterface {
-            use ModelWithFlagsTrait;
-        };
-
-        $this->expectException(InvalidFlagException::class);
-        $modelWithFlags->unsetFlag(null);
-    }
-
-    public function testObjectFlagTypes(): void
-    {
-        $modelWithFlags = new class implements ModelWithFlagsInterface {
-            use ModelWithFlagsTrait;
-        };
-
-        $this->expectException(InvalidFlagException::class);
-        $modelWithFlags->removeFlag((object) []);
-    }
-
-    public function testFloatFlagTypes(): void
-    {
-        $modelWithFlags = new class implements ModelWithFlagsInterface {
-            use ModelWithFlagsTrait;
-        };
-
-        $this->expectException(InvalidFlagException::class);
-        $modelWithFlags->hasFlag(3.14);
     }
 }
