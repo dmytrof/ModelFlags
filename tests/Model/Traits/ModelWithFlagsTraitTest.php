@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the DmytrofModelsManagementBundle package.
+ * This file is part of the DmytrofModelFlags package.
  *
  * (c) Dmytro Feshchenko <dmytro.feshchenko@gmail.com>
  *
